@@ -1,13 +1,80 @@
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "       Mercury Launch Script v0.0.1        " ).
+PRINT( "       Mercury Launch Script v0.0.2        " ).
 PRINT( "===========================================" ).
+
+FUNCTION STAGE_SETUP
+{
+    WHEN STAGE:SOLIDFUEL <= 0 AND STAGE:LIQUIDFUEL <= 0 THEN
+    {
+        ML( "Staging." ).
+        STAGE.
+    }
+}
 
 FUNCTION LAUNCH
 {
     PARAMETER HEIGHT.
     PARAMETER ANGLE.
     
-    ML( "SE - TODO:  Launcher goes here" ).
+    IF( ANGLE < 270 )
+    {
+        SET ANGLE TO ANGLE + 90.
+    }
+    ELSE
+    { 
+        SET ANGLE TO ANGLE - 270.
+    }
+    
+    LOCK THROTTLE TO 1.
+    
+    MLT( -4, "Starting countdown..." ).
+
+    WAIT 1.
+
+    MLT( -3, "3" ).
+    WAIT 1.
+
+    MLT( -2, "2" ).
+    WAIT 1.
+
+    MLT( -1, "1" ).
+    WAIT 1.
+
+    ML( "Ignition." ).
+
+    STAGE.
+    
+    STAGE_SETUP.
+    
+    WAIT UNTIL SHIP:VELOCITY:SURFACE:MAG > 1.0.
+    
+    ML( "We have lift off!" ).
+    
+    ML( "Steering locked to near vertical." ).
+    LOCK STEERING TO HEADING( ANGLE, 89.8 ).
+    
+    STAGE_SETUP.
+    
+    WAIT UNTIL SHIP:VELOCITY:SURFACE:MAG > 200.
+    
+    ML( "Adjusting angle slightly." ).
+    ML( "Easing off throttle." ).
+    
+    LOCK STEERING TO HEADING( ANGLE, 88 ).
+    
+    LOCK THROTTLE TO 0.5.
+    
+    STAGE_SETUP.
+    
+    WAIT UNTIL SHIP:ALTITUDE > 10000.
+    
+    ML( "SE - TODO: gravity turn..." ).
+    
+    STAGE_SETUP.
+    
+    LOCK THROTTLE TO 0.8.
+        
+    WAIT UNTIL SHIP:APOAPSIS > ( HEIGHT + 2000 ).
 }
