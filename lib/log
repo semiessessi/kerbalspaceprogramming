@@ -1,0 +1,22 @@
+DECLARE FUNCTION MLT  
+{
+    PARAMETER MET.
+    PARAMETER TEXT.
+    LOCAL FULLTEXT IS "T" + MET + ": " + TEXT.
+    
+    PRINT FULLTEXT.
+    HUDTEXT( FULLTEXT, 12, 2, 18, rgb(1,1,0.5), false).
+}
+
+DECLARE FUNCTION ML
+{
+    PARAMETER TEXT.
+    IF ( MISSIONTIME >= 0 )
+    {
+        MLT( "+" + ROUND( MISSIONTIME ), TEXT ).
+    }
+    ELSE
+    {
+        MLT( "+??", TEXT ).
+    }
+}
