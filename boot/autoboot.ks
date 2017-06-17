@@ -3,7 +3,7 @@ COPYPATH( "0:/lib/log", "1:/lib/log" ).
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "              Autoboot v1.0.0              " ).
+PRINT( "              Autoboot v1.0.1              " ).
 PRINT( "===========================================" ).
 
 WAIT 1.
@@ -98,3 +98,6 @@ ELSE
 {
     RUN "1:/sys/idle".
 }
+
+SET SHIP:CONTROL:PILOTMAINTHROTTLE TO 0.
+SET SHIP:CONTROL:NEUTRALIZE TO TRUE.
