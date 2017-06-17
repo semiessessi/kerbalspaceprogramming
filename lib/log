@@ -12,7 +12,7 @@ DECLARE FUNCTION ML
 {
     PARAMETER TEXT.
 
-    IF ( MISSIONTIME >= 0 )
+    IF ( MISSIONTIME > 0 )
     {
         IF ( MISSIONTIME <= 0.07 )
         {
