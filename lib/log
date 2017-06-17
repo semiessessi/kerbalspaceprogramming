@@ -11,9 +11,25 @@ DECLARE FUNCTION MLT
 DECLARE FUNCTION ML
 {
     PARAMETER TEXT.
+
     IF ( MISSIONTIME >= 0 )
     {
-        MLT( "+" + ROUND( MISSIONTIME ), TEXT ).
+        IF ( MISSIONTIME < 1.0 )
+        {
+            MLT( "+" + ROUND( MISSIONTIME, 1 ), TEXT ).
+        }
+        ELSE IF ( MISSIONTIME <= 0.1 )
+        {
+            MLT( "+" + ROUND( MISSIONTIME, 2 ), TEXT ).
+        }
+        ELSE IF ( MISSIONTIME <= 0.01 )
+        {
+            MLT( "+" + ROUND( MISSIONTIME, 3 ), TEXT ).
+        }
+        ELSE
+        {
+            MLT( "+" + ROUND( MISSIONTIME ), TEXT ).
+        }
     }
     ELSE
     {
