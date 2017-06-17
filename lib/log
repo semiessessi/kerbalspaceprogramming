@@ -14,17 +14,17 @@ DECLARE FUNCTION ML
 
     IF ( MISSIONTIME >= 0 )
     {
-        IF ( MISSIONTIME < 1.0 )
+        IF ( MISSIONTIME <= 0.01 )
         {
-            MLT( "+" + ROUND( MISSIONTIME, 1 ), TEXT ).
+            MLT( "+" + ROUND( MISSIONTIME, 3 ), TEXT ).
         }
         ELSE IF ( MISSIONTIME <= 0.1 )
         {
             MLT( "+" + ROUND( MISSIONTIME, 2 ), TEXT ).
         }
-        ELSE IF ( MISSIONTIME <= 0.01 )
+        ELSE IF ( MISSIONTIME < 1.0 )
         {
-            MLT( "+" + ROUND( MISSIONTIME, 3 ), TEXT ).
+            MLT( "+" + ROUND( MISSIONTIME, 1 ), TEXT ).
         }
         ELSE
         {
