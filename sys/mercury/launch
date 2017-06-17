@@ -1,0 +1,13 @@
+RUN ONCE "1:/lib/log".
+
+PRINT( "===========================================" ).
+PRINT( "       Mercury Launch Script v0.0.1        " ).
+PRINT( "===========================================" ).
+
+FUNCTION LAUNCH
+{
+    PARAMETER HEIGHT.
+    PARAMETER ANGLE.
+    
+    ML( "SE - TODO:  Launcher goes here" ).
+}

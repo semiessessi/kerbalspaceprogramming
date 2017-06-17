@@ -1,0 +1,7 @@
+RUN ONCE "1:/lib/log".
+
+PRINT( "===========================================" ).
+PRINT( "        Mercury Bootstrapper v0.0.1        " ).
+PRINT( "===========================================" ).
+
+ML( "SE - TODO: bootstrapper goes here" ).
