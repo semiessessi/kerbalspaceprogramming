@@ -1,7 +1,7 @@
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "       Mercury Launch Script v0.5.2        " ).
+PRINT( "       Mercury Launch Script v0.5.3        " ).
 PRINT( "===========================================" ).
 
 FUNCTION STAGE_SETUP
@@ -103,7 +103,7 @@ FUNCTION LAUNCH
 
     ML( "Executing orbital insertion burn." ).
     
-    LOCK STEERING TO HEADING( ANGLE, 353 ).
+    LOCK STEERING TO HEADING( ANGLE, 350 ).
     LOCK THROTTLE TO 1.0.
     STAGE_SETUP.
     
