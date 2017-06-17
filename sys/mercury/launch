@@ -1,7 +1,7 @@
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "       Mercury Launch Script v0.5.3        " ).
+PRINT( "       Mercury Launch Script v0.6.0        " ).
 PRINT( "===========================================" ).
 
 FUNCTION STAGE_SETUP
@@ -84,6 +84,12 @@ FUNCTION LAUNCH
     LOCK THROTTLE TO 0.5.
     STAGE_SETUP.
     
+    WAIT UNTIL SHIP:ALTITUDE > 8500.
+    
+    LOCK STEERING TO HEADING( ANGLE, 87 ).
+    LOCK THROTTLE TO 0.65.
+    STAGE_SETUP.
+    
     WAIT UNTIL SHIP:ALTITUDE > 10000.
     
     ML( "Commencing gravity turn to reach orbital altitude" ).
@@ -103,7 +109,7 @@ FUNCTION LAUNCH
 
     ML( "Executing orbital insertion burn." ).
     
-    LOCK STEERING TO HEADING( ANGLE, 350 ).
+    LOCK STEERING TO HEADING( ANGLE, 348 ).
     LOCK THROTTLE TO 1.0.
     STAGE_SETUP.
     

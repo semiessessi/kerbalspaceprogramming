@@ -3,7 +3,7 @@ COPYPATH( "0:/lib/log", "1:/lib/log" ).
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "              Autoboot v1.0.1              " ).
+PRINT( "              Autoboot v1.1.1              " ).
 PRINT( "===========================================" ).
 
 WAIT 1.
@@ -37,7 +37,19 @@ IF ( MISSIONTIME <= 0 )
     
     ON AG8
     {
-        SET HEIGHT TO HEIGHT - 10000.
+        IF( HEIGHT >= 3000000 )
+        {
+            SET HEIGHT TO HEIGHT - 1000000.
+        }
+        ELSE IF( HEIGHT >= 300000 )
+        {
+            SET HEIGHT TO HEIGHT - 100000.
+        }
+        ELSE
+        {
+            SET HEIGHT TO HEIGHT - 10000.
+        }
+        
         IF( HEIGHT < 70000 )
         {
             SET HEIGHT TO 70000.
@@ -50,7 +62,19 @@ IF ( MISSIONTIME <= 0 )
     
     ON AG9
     {
-        SET HEIGHT TO HEIGHT + 10000.
+        IF( HEIGHT >= 2000000 )
+        {
+            SET HEIGHT TO HEIGHT + 1000000.
+        }
+        ELSE IF( HEIGHT >= 200000 )
+        {
+            SET HEIGHT TO HEIGHT + 100000.
+        }
+        ELSE
+        {
+            SET HEIGHT TO HEIGHT + 10000.
+        }
+        
         ML( "Target height set to :" + HEIGHT + "m" ).
         
         PRESERVE.
