@@ -1,7 +1,7 @@
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "        Mercury Idle Script v0.0.1         " ).
+PRINT( "        Mercury Idle Script v0.5.0         " ).
 PRINT( "===========================================" ).
 
-ML( "SE - TODO: idle script goes here" ).
+ML( "Mercury Idle Script: Nothing to do." ).
