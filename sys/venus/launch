@@ -3,7 +3,7 @@ RUN ONCE "1:/lib/log".
 RUN ONCE "1:/lib/stage".
 
 PRINT( "===========================================" ).
-PRINT( "        Venus Launch Script v0.2.1         " ).
+PRINT( "        Venus Launch Script v0.5.0         " ).
 PRINT( "===========================================" ).
 
 FUNCTION GRAVITY_TURN_ANGLE
@@ -37,6 +37,31 @@ FUNCTION LAUNCH
     }
     
     LOCK THROTTLE TO 1.
+    
+    ML( "Press 8 to launch to Minmus orbit." ).
+    ML( "Press 9 to launch to Mun orbit." ).
+    ML( "Press 0 to launch to Kerbin orbit." ).
+    
+    SET DONE TO 0.
+    
+    ON AG8
+    {
+        SET HEIGHT TO 100000.
+        SET DONE TO 3.
+    }
+    
+    ON AG9
+    {
+        SET HEIGHT TO 100000.
+        SET DONE TO 2.
+    }
+    
+    ON AG10
+    {
+        SET DONE TO 1.
+    }
+    
+    WAIT UNTIL DONE > 0.
     
     COUNTDOWN().
     IGNITION_SEQUENCE().
@@ -76,9 +101,22 @@ FUNCTION LAUNCH
     
     HANDLE_SIMPLE_STAGE( 1, 0, ANGLE ).
     
-    WAIT UNTIL SHIP:PERIAPSIS > HEIGHT * 0.975.
+    WAIT UNTIL SHIP:PERIAPSIS > HEIGHT * 0.98.
     
     LOCK THROTTLE TO 0.
 
-    ML( "Launch subroutine complete: Orbit reached." ).
+    IF( DONE = 2 )
+    {
+        // mun orbit
+        ML( "SE - TODO: mun intercept and orbital insertion" ).
+    }
+    ELSE IF( DONE = 3 )
+    {
+        // minmus orbit
+        ML( "SE - TODO: minmus intercept and orbital insertion" ).
+    }
+    ELSE
+    {
+        ML( "Launch subroutine complete: Orbit reached." ).
+    }
 }
