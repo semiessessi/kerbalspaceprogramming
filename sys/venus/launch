@@ -3,7 +3,7 @@ RUN ONCE "1:/lib/log".
 RUN ONCE "1:/lib/stage".
 
 PRINT( "===========================================" ).
-PRINT( "        Venus Launch Script v0.2.0         " ).
+PRINT( "        Venus Launch Script v0.2.1         " ).
 PRINT( "===========================================" ).
 
 FUNCTION GRAVITY_TURN_ANGLE
@@ -50,11 +50,11 @@ FUNCTION LAUNCH
     ML( "Adjusting angle slightly." ).
     ML( "Easing off throttle." ).
     
-    HANDLE_SIMPLE_STAGE( 0.9, 88, ANGLE ).
+    HANDLE_SIMPLE_STAGE( 0.9, 89.5, ANGLE ).
     
     WAIT UNTIL SHIP:ALTITUDE > 8500.
     
-    HANDLE_SIMPLE_STAGE( 0.85, 87, ANGLE ).
+    HANDLE_SIMPLE_STAGE( 0.85, 87.5, ANGLE ).
     
     WAIT UNTIL SHIP:ALTITUDE > 10000.
     
