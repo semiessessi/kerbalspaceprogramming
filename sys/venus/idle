@@ -1,0 +1,7 @@
+RUN ONCE "1:/lib/log".
+
+PRINT( "===========================================" ).
+PRINT( "         Venus Idle Script v0.5.0          " ).
+PRINT( "===========================================" ).
+
+ML( "Venus Idle Script: Nothing to do." ).

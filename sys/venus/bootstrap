@@ -1,0 +1,10 @@
+RUN ONCE "1:/lib/log".
+
+PRINT( "===========================================" ).
+PRINT( "         Venus Bootstrapper v0.1.0         " ).
+PRINT( "===========================================" ).
+
+COPYPATH( "0:/lib/countdown",       "1:/lib/countdown" ).
+COPYPATH( "0:/lib/stage",           "1:/lib/stage" ).
+
+ML( "Bootstrapping complete." ).

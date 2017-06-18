@@ -3,7 +3,7 @@ COPYPATH( "0:/lib/log", "1:/lib/log" ).
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "              Autoboot v1.2.2              " ).
+PRINT( "              Autoboot v1.3.0              " ).
 PRINT( "===========================================" ).
 
 WAIT 1.
@@ -17,7 +17,16 @@ IF ( MISSIONTIME <= 0 )
     SET HEIGHT TO 80000.
     SET ANGLE TO 0.
     SET BOOTSTRAP TO "mercury".
-    // SHIP:NAME
+    SET TEST_STRING TO SHIP:NAME:TOLOWER().
+    
+    IF( TEST_STRING:STARTSWITH( "mercury" ) )
+    {
+        SET BOOTSTRAP TO "mercury".
+    }
+    ELSE IF( TEST_STRING:STARTSWITH( "venus" ) )
+    {
+        SET BOOTSTRAP TO "venus".
+    }
     
     ML( "Press 5 to cycle bootstrapper." ).
     ML( "Press 6/7 to adjust target orbit inclination." ).
@@ -112,6 +121,20 @@ IF ( MISSIONTIME <= 0 )
         ML( "Target inclination set to :" + ANGLE + " degrees" ).
         
         PRESERVE.
+    }
+    
+    ON AG5
+    {
+        IF( BOOTSTRAP = "mercury" )
+        {
+            SET BOOTSTRAP TO "venus".
+        }
+        ELSE IF( BOOTSTRAP = "venus" )
+        {
+            SET BOOTSTRAP TO "mercury".
+        }
+        
+        ML( "Bootstrapper set to " + BOOTSTRAP ).
     }
     
     WAIT UNTIL DONE > 0.

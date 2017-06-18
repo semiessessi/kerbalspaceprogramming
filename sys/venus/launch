@@ -1,0 +1,93 @@
+RUN ONCE "1:/lib/countdown".
+RUN ONCE "1:/lib/log".
+RUN ONCE "1:/lib/stage".
+
+PRINT( "===========================================" ).
+PRINT( "        Venus Launch Script v0.1.0         " ).
+PRINT( "===========================================" ).
+
+FUNCTION GRAVITY_TURN_ANGLE
+{
+    SET RAWLERP TO ( ( SHIP:APOAPSIS - 22000 ) / 44000 ).
+    SET LERP TO MIN( MAX( RAWLERP, 0.0 ), 1.0 ).
+    
+    RETURN 80 * ( 1.0 - LERP ).
+}
+
+FUNCTION GRAVITY_TURN_THROTTLE
+{
+    SET RAWLERP TO ( ( SHIP:APOAPSIS - 22000 ) / 44000 ).
+    SET LERP TO MIN( MAX( RAWLERP, 0.0 ), 1.0 ).
+    
+    RETURN 0.8 + 0.2 * LERP.
+}
+
+FUNCTION LAUNCH
+{
+    PARAMETER HEIGHT.
+    PARAMETER ANGLE.
+    
+    IF( ANGLE < 270 )
+    {
+        SET ANGLE TO ANGLE + 90.
+    }
+    ELSE
+    { 
+        SET ANGLE TO ANGLE - 270.
+    }
+    
+    LOCK THROTTLE TO 1.
+    
+    COUNTDOWN().
+
+    MLT( "+0", "Ignition." ).
+
+    STAGE.
+    
+    STAGE_SETUP().
+    
+    WAIT UNTIL SHIP:VELOCITY:SURFACE:MAG > 1.0.
+    
+    ML( "We have lift off!" ).
+    
+    ML( "Steering locked to near vertical." ).
+    
+    HANDLE_SIMPLE_STAGE( 1.0, 89.8, ANGLE ).
+    
+    WAIT UNTIL SHIP:VELOCITY:SURFACE:MAG > 200.
+    
+    ML( "Adjusting angle slightly." ).
+    ML( "Easing off throttle." ).
+    
+    HANDLE_SIMPLE_STAGE( 0.5, 88, ANGLE ).
+    
+    WAIT UNTIL SHIP:ALTITUDE > 8500.
+    
+    HANDLE_SIMPLE_STAGE( 0.65, 87, ANGLE ).
+    
+    WAIT UNTIL SHIP:ALTITUDE > 10000.
+    
+    ML( "Commencing gravity turn to reach orbital altitude" ).
+    
+    LOCK STEERING TO HEADING( ANGLE, GRAVITY_TURN_ANGLE() ).
+    LOCK THROTTLE TO GRAVITY_TURN_THROTTLE().
+    STAGE_SETUP().
+        
+    WAIT UNTIL SHIP:APOAPSIS > ( HEIGHT * 1.01 ).
+    
+    ML( "Coasting to altitude..." ).
+    
+    HANDLE_SIMPLE_STAGE( 0, 0, ANGLE ).
+    
+    WAIT UNTIL ETA:APOAPSIS < 11.
+
+    ML( "Executing orbital insertion burn." ).
+    
+    HANDLE_SIMPLE_STAGE( 1, 0, ANGLE ).
+    
+    WAIT UNTIL SHIP:PERIAPSIS > HEIGHT * 0.975.
+    
+    LOCK THROTTLE TO 0.
+
+    ML( "Launch subroutine complete: Orbit reached." ).
+}
