@@ -1,0 +1,35 @@
+RUN ONCE "1:/lib/log".
+
+FUNCTION COUNTDOWN
+{
+    IF ( MISSIONTIME > 0 )
+    {
+        ML( "Starting countdown..." ).
+
+        WAIT 1.
+
+        ML( "3" ).
+        WAIT 1.
+
+        ML( "2" ).
+        WAIT 1.
+
+        ML( "1" ).
+        WAIT 1.
+    }
+    ELSE
+    {
+        MLT( -4, "Starting countdown..." ).
+
+        WAIT 1.
+
+        MLT( -3, "3" ).
+        WAIT 1.
+
+        MLT( -2, "2" ).
+        WAIT 1.
+
+        MLT( -1, "1" ).
+        WAIT 1.
+    }
+}

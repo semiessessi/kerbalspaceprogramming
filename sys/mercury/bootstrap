@@ -1,7 +1,10 @@
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "        Mercury Bootstrapper v0.5.0        " ).
+PRINT( "        Mercury Bootstrapper v0.6.0        " ).
 PRINT( "===========================================" ).
+
+COPYPATH( "0:/lib/countdown",       "1:/lib/countdown" ).
+COPYPATH( "0:/lib/stage",           "1:/lib/stage" ).
 
 ML( "Bootstrapping complete." ).
