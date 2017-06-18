@@ -33,3 +33,16 @@ FUNCTION COUNTDOWN
         WAIT 1.
     }
 }
+
+FUNCTION IGNITION_SEQUENCE
+{
+    MLT( "+0", "Ignition." ).
+
+    STAGE.
+    
+    STAGE_SETUP().
+    
+    WAIT UNTIL SHIP:VELOCITY:SURFACE:MAG > 1.0.
+    
+    ML( "We have lift off!" ).
+}

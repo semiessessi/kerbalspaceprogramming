@@ -3,7 +3,7 @@ RUN ONCE "1:/lib/log".
 RUN ONCE "1:/lib/stage".
 
 PRINT( "===========================================" ).
-PRINT( "       Mercury Launch Script v0.9.6        " ).
+PRINT( "       Mercury Launch Script v0.9.7        " ).
 PRINT( "===========================================" ).
 
 FUNCTION GRAVITY_TURN_ANGLE
