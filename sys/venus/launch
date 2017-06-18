@@ -3,7 +3,7 @@ RUN ONCE "1:/lib/log".
 RUN ONCE "1:/lib/stage".
 
 PRINT( "===========================================" ).
-PRINT( "        Venus Launch Script v0.1.0         " ).
+PRINT( "        Venus Launch Script v0.2.0         " ).
 PRINT( "===========================================" ).
 
 FUNCTION GRAVITY_TURN_ANGLE
@@ -39,16 +39,7 @@ FUNCTION LAUNCH
     LOCK THROTTLE TO 1.
     
     COUNTDOWN().
-
-    MLT( "+0", "Ignition." ).
-
-    STAGE.
-    
-    STAGE_SETUP().
-    
-    WAIT UNTIL SHIP:VELOCITY:SURFACE:MAG > 1.0.
-    
-    ML( "We have lift off!" ).
+    IGNITION_SEQUENCE().
     
     ML( "Steering locked to near vertical." ).
     
@@ -59,11 +50,11 @@ FUNCTION LAUNCH
     ML( "Adjusting angle slightly." ).
     ML( "Easing off throttle." ).
     
-    HANDLE_SIMPLE_STAGE( 0.5, 88, ANGLE ).
+    HANDLE_SIMPLE_STAGE( 0.9, 88, ANGLE ).
     
     WAIT UNTIL SHIP:ALTITUDE > 8500.
     
-    HANDLE_SIMPLE_STAGE( 0.65, 87, ANGLE ).
+    HANDLE_SIMPLE_STAGE( 0.85, 87, ANGLE ).
     
     WAIT UNTIL SHIP:ALTITUDE > 10000.
     
