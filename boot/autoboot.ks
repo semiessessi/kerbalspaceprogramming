@@ -3,7 +3,7 @@ COPYPATH( "0:/lib/log", "1:/lib/log" ).
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "              Autoboot v1.2.1              " ).
+PRINT( "              Autoboot v1.2.2              " ).
 PRINT( "===========================================" ).
 
 WAIT 1.
@@ -47,7 +47,7 @@ IF ( MISSIONTIME <= 0 )
         }
         ELSE IF( HEIGHT = 80000 )
         {
-            HEIGHT = 72500.
+            SET HEIGHT TO 72500.
         }
         ELSE
         {
@@ -76,7 +76,7 @@ IF ( MISSIONTIME <= 0 )
         }
         ELSE IF( HEIGHT = 72500 )
         {
-            HEIGHT = 80000.
+            SET HEIGHT TO 80000.
         }
         ELSE
         {
