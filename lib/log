@@ -14,7 +14,7 @@ DECLARE FUNCTION ML
 
     IF ( MISSIONTIME > 0 )
     {
-        IF ( MISSIONTIME < 0.08 )
+        IF ( MISSIONTIME < 0.1 )
         {
             MLT( "+" + ROUND( MISSIONTIME, 3 ), TEXT ).
         }
