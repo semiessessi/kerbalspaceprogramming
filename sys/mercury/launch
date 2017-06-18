@@ -3,7 +3,7 @@ RUN ONCE "1:/lib/log".
 RUN ONCE "1:/lib/stage".
 
 PRINT( "===========================================" ).
-PRINT( "       Mercury Launch Script v0.9.5        " ).
+PRINT( "       Mercury Launch Script v0.9.6        " ).
 PRINT( "===========================================" ).
 
 FUNCTION GRAVITY_TURN_ANGLE
@@ -52,18 +52,18 @@ FUNCTION LAUNCH
     
     ML( "Steering locked to near vertical." ).
     
-    HANDLE_SIMPLE_STAGE( 1.0, 89.8 ).
+    HANDLE_SIMPLE_STAGE( 1.0, 89.8, ANGLE ).
     
     WAIT UNTIL SHIP:VELOCITY:SURFACE:MAG > 200.
     
     ML( "Adjusting angle slightly." ).
     ML( "Easing off throttle." ).
     
-    HANDLE_SIMPLE_STAGE( 0.5, 88 ).
+    HANDLE_SIMPLE_STAGE( 0.5, 88, ANGLE ).
     
     WAIT UNTIL SHIP:ALTITUDE > 8500.
     
-    HANDLE_SIMPLE_STAGE( 0.65, 87 ).
+    HANDLE_SIMPLE_STAGE( 0.65, 87, ANGLE ).
     
     WAIT UNTIL SHIP:ALTITUDE > 10000.
     
@@ -77,13 +77,13 @@ FUNCTION LAUNCH
     
     ML( "Coasting to altitude..." ).
     
-    HANDLE_SIMPLE_STAGE( 0, 0 ).
+    HANDLE_SIMPLE_STAGE( 0, 0, ANGLE ).
     
     WAIT UNTIL ETA:APOAPSIS < 11.
 
     ML( "Executing orbital insertion burn." ).
     
-    HANDLE_SIMPLE_STAGE( 1, 0 ).
+    HANDLE_SIMPLE_STAGE( 1, 0, ANGLE ).
     
     WAIT UNTIL SHIP:PERIAPSIS > HEIGHT * 0.975.
     
