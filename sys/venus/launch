@@ -1,9 +1,10 @@
 RUN ONCE "1:/lib/countdown".
 RUN ONCE "1:/lib/log".
 RUN ONCE "1:/lib/stage".
+RUN ONCE "1:/lib/transfer".
 
 PRINT( "===========================================" ).
-PRINT( "        Venus Launch Script v0.5.0         " ).
+PRINT( "        Venus Launch Script v0.6.0         " ).
 PRINT( "===========================================" ).
 
 FUNCTION GRAVITY_TURN_ANGLE
@@ -47,12 +48,14 @@ FUNCTION LAUNCH
     ON AG8
     {
         SET HEIGHT TO 100000.
+        SET ANGLE TO 90.
         SET DONE TO 3.
     }
     
     ON AG9
     {
         SET HEIGHT TO 100000.
+        SET ANGLE TO 90.
         SET DONE TO 2.
     }
     
@@ -89,9 +92,25 @@ FUNCTION LAUNCH
     LOCK THROTTLE TO GRAVITY_TURN_THROTTLE().
     STAGE_SETUP().
         
-    WAIT UNTIL SHIP:APOAPSIS > ( HEIGHT * 1.01 ).
+    WAIT UNTIL SHIP:APOAPSIS > ( HEIGHT * 1.003 ).
     
     ML( "Coasting to altitude..." ).
+    
+    HANDLE_SIMPLE_STAGE( 0, 0, ANGLE ).
+    
+    WAIT UNTIL SHIP:ALTITUDE > 70000.
+    
+    ML( "Time warping." ).
+    
+    SET WARP TO 3.
+    
+    HANDLE_SIMPLE_STAGE( 0, 0, ANGLE ).
+    
+    WAIT UNTIL ETA:APOAPSIS < 120.
+    
+    ML( "Disabled time warp." ).
+    
+    SET WARP TO 0.
     
     HANDLE_SIMPLE_STAGE( 0, 0, ANGLE ).
     
@@ -101,14 +120,22 @@ FUNCTION LAUNCH
     
     HANDLE_SIMPLE_STAGE( 1, 0, ANGLE ).
     
-    WAIT UNTIL SHIP:PERIAPSIS > HEIGHT * 0.98.
+    WAIT UNTIL SHIP:PERIAPSIS > HEIGHT * 0.995.
     
     LOCK THROTTLE TO 0.
 
+    ML( "Successfully entered Kerbin orbit." ).
+    SET HEIGHT_ERROR TO SHIP:APOAPSIS - SHIP:PERIAPSIS.
+    SET PERCENT_ERROR TO 50.0 * ( HEIGHT_ERROR / HEIGHT ).
+    ML( "Difference in aspes is " + HEIGHT_ERROR + "m" ).
+    ML( "Error in terms of target height = " + ROUND( PERCENT_ERROR, 3 ) + "%" ).
+    
     IF( DONE = 2 )
     {
         // mun orbit
-        ML( "SE - TODO: mun intercept and orbital insertion" ).
+        SET NEW_TARGET TO MUN:ALTITUDE. 
+
+        TRANSFER_BURN( MUN, 244, ANGLE ).
     }
     ELSE IF( DONE = 3 )
     {
