@@ -17,8 +17,18 @@ FUNCTION TRANSFER_BURN
             SET LONG_DIFF TO LONG_DIFF + 360.
         }
         
-        IF ( LONG_DIFF > ( TARGET_ANGLE - 0.5 ) )
-            AND ( LONG_DIFF < ( TARGET_ANGLE + 0.5 ) )
+        IF ( LONG_DIFF > ( TARGET_ANGLE - 5 ) )
+            AND ( LONG_DIFF < ( TARGET_ANGLE + 5 ) )
+        {
+            SET WARP TO 1.
+        }
+        ELSE
+        {
+            SET WARP TO 4.
+        }
+        
+        IF ( LONG_DIFF > ( TARGET_ANGLE - 0.2 ) )
+            AND ( LONG_DIFF < ( TARGET_ANGLE + 0.2 ) )
         {
             SET TRANSFER_DONE TO 1.
         }
