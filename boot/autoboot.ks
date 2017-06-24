@@ -3,7 +3,7 @@ COPYPATH( "0:/lib/log", "1:/lib/log" ).
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "              Autoboot v1.3.1              " ).
+PRINT( "              Autoboot v1.3.2              " ).
 PRINT( "===========================================" ).
 
 WAIT 1.
@@ -69,7 +69,7 @@ IF ( MISSIONTIME <= 10 )
             SET HEIGHT TO 72500.
         }
         
-        ML( "Target height set to :" + HEIGHT + "m" ).
+        ML( "Target height set to: " + HEIGHT + "m" ).
         
         PRESERVE.
     }
@@ -93,7 +93,7 @@ IF ( MISSIONTIME <= 10 )
             SET HEIGHT TO HEIGHT + 10000.
         }
         
-        ML( "Target height set to :" + HEIGHT + "m" ).
+        ML( "Target height set to: " + HEIGHT + "m" ).
         
         PRESERVE.
     }
@@ -106,7 +106,7 @@ IF ( MISSIONTIME <= 10 )
             SET ANGLE TO 0.
         }
         
-        ML( "Target inclination set to :" + ANGLE + " degrees" ).
+        ML( "Target inclination set to: " + ANGLE + " degrees" ).
         
         PRESERVE.
     }
@@ -119,7 +119,7 @@ IF ( MISSIONTIME <= 10 )
             SET ANGLE TO 355.
         }
         
-        ML( "Target inclination set to :" + ANGLE + " degrees" ).
+        ML( "Target inclination set to: " + ANGLE + " degrees" ).
         
         PRESERVE.
     }
