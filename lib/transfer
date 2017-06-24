@@ -43,5 +43,17 @@ FUNCTION TRANSFER_BURN
     
     ML( TARGET_BODY:NAME + " intercept reached." ).
     
+    ML( "Minimising encounter periapsis." ).
+    
+    HANDLE_SIMPLE_STAGE( 0.1, 0, TILT ).
+    SET NEW_P TO ORBIT:NEXTPATCH:PERIAPSIS.
+    SET OLD_P TO ORBIT:NEXTPATCH:PERIAPSIS.
+
+    UNTIL( ( OLD_P < NEW_P ) OR ( NEW_P < 25000 ) )
+    {
+        SET OLD_P TO NEW_P.
+        SET NEW_P TO ORBIT:NEXTPATCH:PERIAPSIS.
+    }
+    
     LOCK THROTTLE TO 0.    
 }

@@ -4,7 +4,7 @@ RUN ONCE "1:/lib/stage".
 RUN ONCE "1:/lib/transfer".
 
 PRINT( "===========================================" ).
-PRINT( "        Venus Launch Script v0.6.1         " ).
+PRINT( "        Venus Launch Script v0.6.2         " ).
 PRINT( "===========================================" ).
 
 FUNCTION GRAVITY_TURN_ANGLE
@@ -92,13 +92,13 @@ FUNCTION LAUNCH
     LOCK THROTTLE TO GRAVITY_TURN_THROTTLE().
     STAGE_SETUP().
         
-    WAIT UNTIL SHIP:APOAPSIS > ( HEIGHT * 1.003 ).
+    WAIT UNTIL SHIP:APOAPSIS > ( HEIGHT + 750 ).
     
     ML( "Coasting to altitude..." ).
     
     HANDLE_SIMPLE_STAGE( 0, 0, ANGLE ).
     
-    WAIT UNTIL SHIP:ALTITUDE > 70000.
+    WAIT UNTIL SHIP:ALTITUDE > 70250.
     
     ML( "Time warping." ).
     
