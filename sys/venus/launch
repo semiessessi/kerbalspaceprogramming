@@ -4,7 +4,7 @@ RUN ONCE "1:/lib/stage".
 RUN ONCE "1:/lib/transfer".
 
 PRINT( "===========================================" ).
-PRINT( "        Venus Launch Script v0.6.2         " ).
+PRINT( "        Venus Launch Script v0.6.5         " ).
 PRINT( "===========================================" ).
 
 FUNCTION GRAVITY_TURN_ANGLE
@@ -45,8 +45,12 @@ FUNCTION LAUNCH
     
     SET DONE TO 0.
     
+    SET MUN_HEIGHT TO 0.
+    SET MINMUS_HEIGHT TO 0.
+    
     ON AG8
     {
+        SET MINMUS_HEIGHT TO HEIGHT.
         SET HEIGHT TO 100000.
         SET ANGLE TO 90.
         SET DONE TO 3.
@@ -54,6 +58,7 @@ FUNCTION LAUNCH
     
     ON AG9
     {
+        SET MUN_HEIGHT TO HEIGHT.
         SET HEIGHT TO 100000.
         SET ANGLE TO 90.
         SET DONE TO 2.
@@ -133,7 +138,7 @@ FUNCTION LAUNCH
     IF( DONE = 2 )
     {
         // mun orbit
-        TRANSFER_BURN( MUN, 244, ANGLE ).
+        TRANSFER_BURN( MUN, 244, ANGLE, MUN_HEIGHT ).
     }
     ELSE IF( DONE = 3 )
     {
