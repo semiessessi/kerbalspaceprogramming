@@ -4,7 +4,7 @@ RUN ONCE "1:/lib/stage".
 RUN ONCE "1:/lib/transfer".
 
 PRINT( "===========================================" ).
-PRINT( "        Venus Launch Script v0.6.5         " ).
+PRINT( "        Venus Launch Script v0.6.6         " ).
 PRINT( "===========================================" ).
 
 FUNCTION GRAVITY_TURN_ANGLE
@@ -66,6 +66,11 @@ FUNCTION LAUNCH
     
     ON AG10
     {
+        IF( HEIGHT < 75000 )
+        {
+            SET HEIGHT TO 75000.
+        }
+        
         SET DONE TO 1.
     }
     
