@@ -1,0 +1,34 @@
+FUNCTION TRANSFER_BURN
+{
+    PARAMETER TARGET_BODY.
+    PARAMETER TARGET_ANGLE.
+    
+    ML( "Coasting to " + TARGET_BODY:NAME + " transfer." ).
+        
+    SET TRANSFER_DONE TO 0.    
+    UNTIL TRANSFER_DONE > 0
+    {
+        WAIT 1.
+        SET MUN_POSITION TO KERBIN:GEOPOSITIONOF( MUN:POSITION ).
+        SET SHIP_POSITION TO KERBIN:GEOPOSITIONOF( SHIP:POSITION ).
+        SET LONG_DIFF TO SHIP_POSITION:LNG - MUN_POSITION:LNG.
+        IF( LONG_DIFF < 0 )
+        {
+            SET LONG_DIFF TO LONG_DIFF + 360.
+        }
+        
+        IF ( LONG_DIFF > ( TARGET_ANGLE - 0.5 ) )
+            AND ( LONG_DIFF < ( TARGET_ANGLE + 0.5 ) )
+        {
+            SET TRANSFER_DONE TO 1.
+        }
+    }
+
+    ML( "Executing " + TARGET_BODY:NAME + " intercept burn." ).
+    
+    HANDLE_SIMPLE_STAGE( 1, 0, ANGLE ).
+
+    WAIT UNTIL SHIP:ORBIT:HASNEXTPATCH.
+    
+    LOCK THROTTLE TO 0.    
+}
