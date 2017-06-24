@@ -36,3 +36,13 @@ DECLARE FUNCTION ML
         MLT( "+??", TEXT ).
     }
 }
+
+DECLARE FUNCTION LOG_ORBIT
+{
+    PARAMETER HEIGHT.
+    SET HEIGHT_ERROR TO SHIP:APOAPSIS - SHIP:PERIAPSIS.
+    SET PERCENT_ERROR TO 50.0 * ( HEIGHT_ERROR / HEIGHT ).
+    ML( "Apoapsis: " + ROUND( SHIP:APOAPSIS, 0 ) + "m" ).
+    ML( "Periapsis: " + ROUND( SHIP:PERIAPSIS, 0 ) + "m" ).
+    ML( "Error in terms of target height = " + ROUND( PERCENT_ERROR, 3 ) + "%" ).
+}
