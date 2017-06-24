@@ -24,7 +24,7 @@ FUNCTION TRANSFER_BURN
         }
         ELSE
         {
-            SET WARP TO 4.
+            SET WARP TO 50.
         }
         
         IF ( LONG_DIFF > ( TARGET_ANGLE - 0.2 ) )
