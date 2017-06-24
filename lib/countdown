@@ -36,7 +36,14 @@ FUNCTION COUNTDOWN
 
 FUNCTION IGNITION_SEQUENCE
 {
-    MLT( "+0", "Ignition." ).
+    IF ( MISSIONTIME > 0 )
+    {
+        MLT( "+0", "Ignition." ).
+    }
+    ELSE
+    {
+        ML( "Ignition." ).
+    }
 
     STAGE.
     
