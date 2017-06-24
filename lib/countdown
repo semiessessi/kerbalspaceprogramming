@@ -36,7 +36,7 @@ FUNCTION COUNTDOWN
 
 FUNCTION IGNITION_SEQUENCE
 {
-    IF ( MISSIONTIME > 0 )
+    IF ( MISSIONTIME <= 0 )
     {
         MLT( "+0", "Ignition." ).
     }
