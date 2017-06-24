@@ -41,5 +41,7 @@ FUNCTION TRANSFER_BURN
 
     WAIT UNTIL SHIP:ORBIT:HASNEXTPATCH.
     
+    ML( TARGET_BODY:NAME + " intercept reached." ).
+    
     LOCK THROTTLE TO 0.    
 }
