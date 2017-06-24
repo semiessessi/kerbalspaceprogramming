@@ -2,6 +2,7 @@ FUNCTION TRANSFER_BURN
 {
     PARAMETER TARGET_BODY.
     PARAMETER TARGET_ANGLE.
+    PARAMETER TILT.
     
     ML( "Coasting to " + TARGET_BODY:NAME + " transfer." ).
         
@@ -36,7 +37,7 @@ FUNCTION TRANSFER_BURN
 
     ML( "Executing " + TARGET_BODY:NAME + " intercept burn." ).
     
-    HANDLE_SIMPLE_STAGE( 1, 0, ANGLE ).
+    HANDLE_SIMPLE_STAGE( 1, 0, TILT ).
 
     WAIT UNTIL SHIP:ORBIT:HASNEXTPATCH.
     
