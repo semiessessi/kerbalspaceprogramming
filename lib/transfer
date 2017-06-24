@@ -20,11 +20,11 @@ FUNCTION TRANSFER_BURN
         IF ( LONG_DIFF > ( TARGET_ANGLE - 5 ) )
             AND ( LONG_DIFF < ( TARGET_ANGLE + 5 ) )
         {
-            SET WARP TO 1.
+            SET WARP TO 0.
         }
         ELSE
         {
-            SET WARP TO 50.
+            SET WARP TO 3.
         }
         
         IF ( LONG_DIFF > ( TARGET_ANGLE - 0.2 ) )
