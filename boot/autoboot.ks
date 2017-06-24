@@ -3,12 +3,13 @@ COPYPATH( "0:/lib/log", "1:/lib/log" ).
 RUN ONCE "1:/lib/log".
 
 PRINT( "===========================================" ).
-PRINT( "              Autoboot v1.3.0              " ).
+PRINT( "              Autoboot v1.3.1              " ).
 PRINT( "===========================================" ).
 
 WAIT 1.
 
-IF ( MISSIONTIME <= 0 )
+// allow for some time if physics is a knob to us
+IF ( MISSIONTIME <= 10 )
 {
     ML( "Mission has not commenced, starting bootstrap process..." ).
 
