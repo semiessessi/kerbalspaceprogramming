@@ -55,9 +55,9 @@ IF ( MISSIONTIME <= 10 )
         {
             SET HEIGHT TO HEIGHT - 100000.
         }
-        ELSE IF( HEIGHT = 80000 )
+        ELSE IF( HEIGHT = 20000 )
         {
-            SET HEIGHT TO 72500.
+            SET HEIGHT TO 12500.
         }
         ELSE
         {
